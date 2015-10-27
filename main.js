@@ -3,6 +3,7 @@
 const yaml = require('js-yaml');
 const fs   = require('fs');
 const http = require('http');
+const renderHtml = require('./renderHtml');
 
 //npm link to data module and constant filenames are assumed
 const DATA_PATH = './node_modules/cvdata/';
@@ -14,10 +15,14 @@ let cv;
 let skills;
 
 const server = http.createServer(function (request, response) {
-  response.end(JSON.stringify({
-    cv: cv,
-    skills: skills
-  }))
+  if (request.url === '/data') {
+    response.end(JSON.stringify({
+      cv: cv,
+      skills: skills
+    }))
+  } else {
+    response.end(renderHtml())
+  }
 });
 
 server.listen(PORT, () => {
