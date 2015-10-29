@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Radium from 'radium';
+import General from './General'
 
 const style = {
     color: 'red'
@@ -10,10 +11,12 @@ const style = {
 class Root extends React.Component {
     render() {
         const {general, work, education, projects, publications} = this.props.cv;
-        return React.createElement('p', {
-            style: style
-        }, 'Test')
+        return (
+            <div>
+                <General data={general}/>
+            </div>
+        )
     }
 }
 
-module.exports = Radium(Root);
+export default Radium(Root);
