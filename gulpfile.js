@@ -13,7 +13,7 @@ const CV_FILE_PATH = DATA_PATH + 'cv_english.yml';
 const SKILLS_FILE_PATH = DATA_PATH + 'skills.yml';
 
 gulp.task('scripts', ['clean:scripts'], () => {
-    return gulp.src('src/**/*.js')
+    return gulp.src(['src/**/*.js', 'src/**/*.jsx'])
         .pipe(babel())
         .pipe(gulp.dest('dist'));
 });

@@ -1,7 +1,7 @@
 'use strict';
 
-const yaml = require('js-yaml');
-const fs   = require('fs');
+import yaml from 'js-yaml';
+import fs from 'fs';
 
 module.exports = (cvFilePath, skillsFilePath) => {
     try {

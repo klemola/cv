@@ -1,8 +1,9 @@
 'use strict';
 
-const React = require('react');
-const ReactDOMServer = require('react-dom/server');
-const Root = require('./components/Root');
+import React from 'react';
+import ReactDOMServer from 'react-dom/server';
+import Root from './components/Root';
+
 const Template = (content) => {
     return `
      <!doctype html>

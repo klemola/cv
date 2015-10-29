@@ -1,7 +1,7 @@
 'use strict';
 
-const React = require('react');
-const Radium = require('radium');
+import React from 'react';
+import Radium from 'radium';
 
 const style = {
     color: 'red'
