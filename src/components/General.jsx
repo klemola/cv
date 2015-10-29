@@ -16,9 +16,10 @@ class General extends React.Component {
             <section>
                 <Row>
                     <Column>
-                        <Row>{data.name}</Row>
+                        <Row><strong>{data.name}</strong></Row>
                         <Row>{data.occupation}</Row>
-                        <Row>Tel.{data.phonenumber}</Row>
+                        <Row><span>Tel. {data.phonenumber}</span></Row>
+                        <Row><span>CV {StringFormatter.formatDate(data.date)}</span></Row>
                     </Column>
                     <Column>
                         <Row>
