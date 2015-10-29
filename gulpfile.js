@@ -41,7 +41,8 @@ gulp.task('html', ['clean:output', 'scripts'], () => {
     let renderHtml = require('./dist/renderHtml');
     let stream = vinyl('cv.html');
 
-    stream.end(renderHtml(loadData(CV_FILE_PATH, SKILLS_FILE_PATH)));
+    let data = loadData(CV_FILE_PATH, SKILLS_FILE_PATH);
+    stream.end(renderHtml(data.cv, data.skills));
 
     return stream.pipe(gulp.dest('output'));
 });
