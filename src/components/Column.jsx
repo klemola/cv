@@ -3,12 +3,12 @@
 import React from 'react';
 import Radium from 'radium';
 
-const style = {
-    flex: 1
-};
-
 class Column extends React.Component {
     render() {
+        let style = {
+            flex: !this.props.width ? 1 : 'none',
+            width: this.props.width
+        };
         return (
             <div style={style}>{this.props.children}</div>
         )

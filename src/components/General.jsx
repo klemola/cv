@@ -19,7 +19,7 @@ class General extends React.Component {
                         <Row><strong>{data.name}</strong></Row>
                         <Row>{data.occupation}</Row>
                         <Row><span>Tel. {data.phonenumber}</span></Row>
-                        <Row><span>CV {StringFormatter.formatDate(data.date)}</span></Row>
+                        <Row><span>CV {StringFormatter.dateString(data.date)}</span></Row>
                     </Column>
                     <Column>
                         <Row>
