@@ -28,14 +28,21 @@ gulp.task('clean:output', () => {
         .pipe(clean({force: true}));
 });
 
+gulp.task('clean:cache', () => {
+    Object.keys(require.cache).forEach(function(key) {
+        if (key.indexOf('cv/dist') !== -1) {
+            delete require.cache[key]
+        }
+    });
+});
+
 gulp.task('html', ['clean:output', 'scripts'], () => {
     let loadData = require('./dist/loadData');
     let renderHtml = require('./dist/renderHtml');
     let stream = vinyl('cv.html');
 
-    let html = renderHtml(loadData(CV_FILE_PATH, SKILLS_FILE_PATH));
-    console.log(html);
-    stream.end(html);
+    stream.end(renderHtml(loadData(CV_FILE_PATH, SKILLS_FILE_PATH)));
+
     return stream.pipe(gulp.dest('output'));
 });
 
@@ -49,7 +56,8 @@ gulp.task('serve', ['html'], () => {
             baseDir: ['output']
         }
     });
-    gulp.watch(['src/**/*.js', 'src/**/*.jsx'], ['html', reload]);
+    gulp.watch(['src/**/*.js', 'src/**/*.jsx'], ['clean:cache', 'html']);
+    gulp.watch(['output/cv.html'], reload);
 });
 
 gulp.task('default', ['html']);

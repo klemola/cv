@@ -4,7 +4,7 @@ const React = require('react');
 const Radium = require('radium');
 
 const style = {
-    color: 'yellow'
+    color: 'red'
 };
 
 class Root extends React.Component {
