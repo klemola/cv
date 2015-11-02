@@ -7,22 +7,29 @@ import Row from './Row'
 import StringFormatter from '../utils/StringFormatter';
 import ElementUtil from '../utils/ElementUtil'
 
-const style = {};
+const style = {
+    'marginTop': '15px'
+};
 
 class Job extends React.Component {
     render() {
         const data = this.props.data;
         return (
-            <Row>
-                <Column width={'33.33%'}>{StringFormatter.monthOfYearString(data.start)} - {StringFormatter.monthOfYearString(data.end)}</Column>
-                <Column>
-                    <Row>
-                        <strong>{data.position}</strong>
-                    </Row>
-                    <Row>{data.company}</Row>
-                    {ElementUtil.textToParagraph(data.description)}
-                </Column>
-            </Row>
+            <div style={style}>
+                <Row>
+                    <Column width={'33.33%'}>
+                        {StringFormatter.monthOfYearString(data.start)} - {StringFormatter.monthOfYearString(data.end)}
+                    </Column>
+                    <Column>
+                        <Row>
+                            <strong>{data.position}</strong>
+                        </Row>
+                        <Row>{data.company}</Row>
+                        {ElementUtil.textToParagraph(data.description)}
+                        <Row><span>Key technologies: {data.tech}</span></Row>
+                    </Column>
+                </Row>
+            </div>
         )
     }
 }

@@ -10,10 +10,10 @@ class Work extends React.Component {
     render() {
         const data = this.props.data;
         return (
-            <section>
+            <section style={style}>
                 <h1>{data.title}</h1>
                 {data.items.map(function(job) {
-                    return <Job data={job} />
+                    return <Job data={job}/>
                 })}
             </section>
         )

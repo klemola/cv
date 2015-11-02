@@ -6,6 +6,7 @@ const clean = require('gulp-clean');
 const vinyl = require('vinyl-source-stream');
 const browserSync = require('browser-sync');
 const reload = browserSync.reload;
+const htmlAutoprefixer = require('html-autoprefixer');
 
 //npm link to data module and constant filenames are assumed
 const DATA_PATH = './node_modules/cvdata/';
@@ -42,9 +43,14 @@ gulp.task('html', ['clean:output', 'scripts'], () => {
     let stream = vinyl('cv.html');
 
     let data = loadData(CV_FILE_PATH, SKILLS_FILE_PATH);
-    stream.end(renderHtml(data.cv, data.skills));
+    stream.end(htmlAutoprefixer.process(renderHtml(data.cv, data.skills)));
 
     return stream.pipe(gulp.dest('output'));
+});
+
+gulp.task('pdf', ['html'], () => {
+    let htmlToPdf = require('./dist/htmlToPdf');
+    htmlToPdf('./output/cv.html', './output/cv.pdf');
 });
 
 gulp.task('serve', ['html'], () => {
