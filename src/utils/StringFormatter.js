@@ -10,4 +10,10 @@ export default class StringFormatter {
     static monthOfYearString(date) {
         return date ? Moment(date).format('MM/YYYY') : ''
     }
+
+    static yearRange(startYearString, endYearString) {
+        return (startYearString === endYearString) || !endYearString ?
+            startYearString
+            : `${startYearString} - ${endYearString}`
+    }
 }

@@ -8,5 +8,9 @@ export default {
 
     a: {
         'text-decoration': 'none'
+    },
+
+    'h3': {
+      margin: '3px 0'
     }
 }

@@ -4,8 +4,8 @@ import React from 'react';
 import Radium from 'radium';
 import Column from './Column'
 import Row from './Row'
-import StringFormatter from '../utils/StringFormatter'
-import ElementUtil from '../utils/ElementUtil'
+import {dateString} from '../utils/StringFormatter'
+import {textToParagraph} from '../utils/ElementUtil'
 
 const style = {};
 
@@ -16,7 +16,7 @@ const General = ({data}) => (
                 <Row><strong>{data.name}</strong></Row>
                 <Row>{data.occupation}</Row>
                 <Row><span>Tel. {data.phonenumber}</span></Row>
-                <Row><span>CV {StringFormatter.dateString(data.date)}</span></Row>
+                <Row><span>CV {dateString(data.date)}</span></Row>
             </Column>
             <Column>
                 <Row>
@@ -31,7 +31,7 @@ const General = ({data}) => (
                 })}
             </Column>
         </Row>
-        {ElementUtil.textToParagraph(data.description)}
+        {textToParagraph(data.description)}
     </section>
 );
 

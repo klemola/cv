@@ -6,6 +6,7 @@ import globalStyles from '../constants/globalStyles'
 import General from './General'
 import Work from './Work'
 import Education from './Education'
+import Projects from './Projects'
 
 const style = {
     maxWidth: '760px',
@@ -23,6 +24,7 @@ const Root = (props) => {
             <General data={general}/>
             <Work data={work}/>
             <Education data={education}/>
+            <Projects data={projects}/>
         </div>
     )
 };
