@@ -2,7 +2,8 @@
 
 export default {
     body: {
-        background: '#eee'
+        background: '#eee',
+        fontFamily: 'Helvetica, Arial, sans-serif'
     },
 
     a: {

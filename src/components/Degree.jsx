@@ -5,13 +5,12 @@ import Radium from 'radium';
 import Column from './Column'
 import Row from './Row'
 import StringFormatter from '../utils/StringFormatter';
-import ElementUtil from '../utils/ElementUtil'
 
 const style = {
     'marginTop': '15px'
 };
 
-const Job = ({data}) => (
+const Degree = ({data}) => (
     <div style={style}>
         <Row>
             <Column width={'33.33%'}>
@@ -19,14 +18,13 @@ const Job = ({data}) => (
             </Column>
             <Column>
                 <Row>
-                    <strong>{data.position}</strong>
+                    <strong>{data.degree}</strong>
                 </Row>
-                <Row>{data.company}</Row>
-                {ElementUtil.textToParagraph(data.description)}
-                {data.tech && <Row><span>Key technologies: {data.tech}</span></Row>}
+                <Row>{data.name}</Row>
+                {data.specialization && <Row><span>Specialization in {data.specialization}</span></Row>}
             </Column>
         </Row>
     </div>
 );
 
-export default Radium(Job);
+export default Radium(Degree);

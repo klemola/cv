@@ -5,6 +5,7 @@ import Radium, { Style } from 'radium';
 import globalStyles from '../constants/globalStyles'
 import General from './General'
 import Work from './Work'
+import Education from './Education'
 
 const style = {
     maxWidth: '760px',
@@ -21,6 +22,7 @@ const Root = (props) => {
             <Style rules={globalStyles}/>
             <General data={general}/>
             <Work data={work}/>
+            <Education data={education}/>
         </div>
     )
 };
