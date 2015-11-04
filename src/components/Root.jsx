@@ -14,17 +14,15 @@ const style = {
     borderRadius: '6px'
 };
 
-class Root extends React.Component {
-    render() {
-        const {general, work, education, projects, publications} = this.props.cv;
-        return (
-            <div style={style}>
-                <Style rules={globalStyles}/>
-                <General data={general}/>
-                <Work data={work}/>
-            </div>
-        )
-    }
-}
+const Root = (props) => {
+    const {general, work, education, projects, publications} = props.cv;
+    return (
+        <div style={style}>
+            <Style rules={globalStyles}/>
+            <General data={general}/>
+            <Work data={work}/>
+        </div>
+    )
+};
 
 export default Radium(Root);

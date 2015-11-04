@@ -11,27 +11,22 @@ const style = {
     'marginTop': '15px'
 };
 
-class Job extends React.Component {
-    render() {
-        const data = this.props.data;
-        return (
-            <div style={style}>
+const Job = ({data}) => (
+    <div style={style}>
+        <Row>
+            <Column width={'33.33%'}>
+                {StringFormatter.monthOfYearString(data.start)} - {StringFormatter.monthOfYearString(data.end)}
+            </Column>
+            <Column>
                 <Row>
-                    <Column width={'33.33%'}>
-                        {StringFormatter.monthOfYearString(data.start)} - {StringFormatter.monthOfYearString(data.end)}
-                    </Column>
-                    <Column>
-                        <Row>
-                            <strong>{data.position}</strong>
-                        </Row>
-                        <Row>{data.company}</Row>
-                        {ElementUtil.textToParagraph(data.description)}
-                        <Row><span>Key technologies: {data.tech}</span></Row>
-                    </Column>
+                    <strong>{data.position}</strong>
                 </Row>
-            </div>
-        )
-    }
-}
+                <Row>{data.company}</Row>
+                {ElementUtil.textToParagraph(data.description)}
+                <Row><span>Key technologies: {data.tech}</span></Row>
+            </Column>
+        </Row>
+    </div>
+);
 
 export default Radium(Job);

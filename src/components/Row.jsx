@@ -7,12 +7,6 @@ const style = {
     display: 'flex'
 };
 
-class Column extends React.Component {
-    render() {
-        return (
-            <div style={style}>{this.props.children}</div>
-        )
-    }
-}
+const Row = ({children}) => <div style={style}>{children}</div>;
 
-export default Radium(Column);
+export default Radium(Row);
