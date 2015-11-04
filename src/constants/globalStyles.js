@@ -3,14 +3,11 @@
 export default {
     body: {
         background: '#eee',
-        fontFamily: 'Helvetica, Arial, sans-serif'
+        fontFamily: '"Century Gothic", Helvetica, Arial, sans-serif',
+        fontSize: '14px'
     },
 
     a: {
         'text-decoration': 'none'
-    },
-
-    'h3': {
-      margin: '3px 0'
     }
 }

@@ -7,6 +7,7 @@ import General from './General'
 import Work from './Work'
 import Education from './Education'
 import Projects from './Projects'
+import Publications from './Publications';
 
 const style = {
     maxWidth: '760px',
@@ -25,6 +26,7 @@ const Root = (props) => {
             <Work data={work}/>
             <Education data={education}/>
             <Projects data={projects}/>
+            <Publications data={publications}/>
         </div>
     )
 };

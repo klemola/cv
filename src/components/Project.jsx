@@ -14,7 +14,7 @@ const style = {
 const Project = ({data}) => (
     <div style={style}>
         <Row>
-            <h3>{data.name}</h3>
+            <strong>{data.name}</strong>
         </Row>
         <Row>
             <span>{data.client} ({yearRange(data.start, data.end)})</span>
