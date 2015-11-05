@@ -9,9 +9,7 @@ const style = {};
 const Education = ({data}) => (
     <section style={style}>
         <h1>{data.title}</h1>
-        {data.items.map(function(degree) {
-            return <Degree data={degree}/>
-        })}
+        {data.items.map((degree) => <Degree data={degree}/>)}
     </section>
 );
 

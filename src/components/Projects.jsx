@@ -9,9 +9,7 @@ const style = {};
 const Projects = ({data}) => (
     <section style={style}>
         <h1>{data.title}</h1>
-        {data.items.map(function(project) {
-            return <Project data={project}/>
-        })}
+        {data.items.map((project) => <Project data={project}/>)}
     </section>
 );
 

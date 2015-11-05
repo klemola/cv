@@ -2,10 +2,10 @@
 
 import React from 'react';
 import Radium from 'radium';
-import Column from './Column'
-import Row from './Row'
-import {dateString} from '../utils/StringFormatter'
-import {textToParagraph} from '../utils/ElementUtil'
+import Column from './Column';
+import Row from './Row';
+import {dateString} from '../utils/StringFormatter';
+import {textToParagraph} from '../utils/ElementUtil';
 
 const style = {};
 
