@@ -18,14 +18,14 @@ const style = {
 
 const header = (
     <Row>
-        <Column width={'40%'}></Column>
+        <Column width={'45%'}></Column>
         <Column textAlign={'right'}>Skill (1-5)</Column>
         <Column textAlign={'right'}>Exp (Years)</Column>
     </Row>
 );
 
 const Skills = ({data}) => {
-    const relevantSkills = data.items.filter((skill) => skill.relevance > 5);
+    const relevantSkills = data.items.filter((skill) => skill.relevance > 6);
     const typeGroups = R.values(groupByType(relevantSkills));
     const sides = cutInHalf(typeGroups);
 

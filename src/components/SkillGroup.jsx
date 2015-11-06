@@ -15,7 +15,7 @@ const SkillGroup = ({data}) => {
     return (
         <div style={groupStyle}>
             <Row>
-                <Column width={'50%'}>
+                <Column width={'45%'}>
                     <strong>{capitalize(data[0].type)}</strong>
                 </Column>
                 <Column></Column>
@@ -24,7 +24,7 @@ const SkillGroup = ({data}) => {
             {data.map((skill) => {
                 return (
                     <Row>
-                        <Column width={'40%'}>{skill.name}</Column>
+                        <Column width={'45%'}>{skill.name}</Column>
                         <Column textAlign={'right'}>{skill.skill}</Column>
                         <Column textAlign={'right'}>{skill.experience}</Column>
                     </Row>
