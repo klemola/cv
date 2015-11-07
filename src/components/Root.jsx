@@ -1,21 +1,21 @@
 'use strict';
 
-import React from 'react';
-import Radium, { Style } from 'radium';
+import React from 'react'
+import Radium, { Style } from 'radium'
 import globalStyles from '../constants/globalStyles'
+import Page from './Page'
 import General from './General'
 import Work from './Work'
 import Education from './Education'
 import Projects from './Projects'
-import Publications from './Publications';
-import Skills from './Skills';
+import Publications from './Publications'
+import Skills from './Skills'
 
 const style = {
-    maxWidth: '760px',
-    margin: '20px auto',
+    maxWidth: '700px',
+    margin: '0 auto',
     padding: '20px',
-    background: '#fff',
-    borderRadius: '6px'
+    background: '#fff'
 };
 
 const Root = (props) => {
@@ -23,12 +23,20 @@ const Root = (props) => {
     return (
         <div style={style}>
             <Style rules={globalStyles}/>
-            <General data={general}/>
-            <Work data={work}/>
-            <Education data={education}/>
-            <Projects data={projects}/>
-            <Publications data={publications}/>
-            <Skills data={props.skills}/>
+            <Page>
+                <General data={general}/>
+                <Work data={work}/>
+            </Page>
+            <Page>
+                <Skills data={props.skills}/>
+            </Page>
+            <Page>
+                <Education data={education}/>
+                <Projects data={projects}/>
+            </Page>
+            <Page noPageBreak={true}>
+                <Publications data={publications}/>
+            </Page>
         </div>
     )
 };
