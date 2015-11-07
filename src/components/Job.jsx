@@ -1,10 +1,10 @@
 'use strict';
 
-import React from 'react';
-import Radium from 'radium';
+import React from 'react'
+import Radium from 'radium'
 import Column from './Column'
 import Row from './Row'
-import {monthOfYearString} from '../utils/StringFormatter';
+import {monthOfYearString} from '../utils/StringFormatter'
 import {textToParagraph} from '../utils/ElementUtil'
 
 const style = {
@@ -14,7 +14,7 @@ const style = {
 const Job = ({data}) => (
     <div style={style}>
         <Row>
-            <Column width={'33.33%'}>
+            <Column width={'30%'}>
                 {monthOfYearString(data.start)} - {monthOfYearString(data.end)}
             </Column>
             <Column>
