@@ -7,7 +7,7 @@ const config = {
     'phantomPath': '/usr/local/bin/phantomjs'
 };
 
-export default function (sourceFilePath, targetFilePath) {
+export default (sourceFilePath, targetFilePath) => {
     const html = fs.readFileSync(sourceFilePath, 'utf-8');
     pdf.create(html, config).toFile(targetFilePath, (err, res) => {
         if (err) {

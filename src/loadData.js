@@ -3,7 +3,7 @@
 import yaml from 'js-yaml';
 import fs from 'fs';
 
-module.exports = (cvFilePath, skillsFilePath) => {
+export default (cvFilePath, skillsFilePath) => {
     try {
         return {
             cv: yaml.safeLoad(fs.readFileSync(cvFilePath, 'utf-8')),

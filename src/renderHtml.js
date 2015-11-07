@@ -21,7 +21,7 @@ const Template = (content) => {
     `;
 };
 
-module.exports = function (cv, skills) {
+export default (cv, skills) => {
     let html = ReactDOMServer.renderToString(React.createElement(Root, {
         cv: cv,
         skills: skills
