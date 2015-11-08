@@ -1,19 +1,33 @@
 'use strict';
 
+const colors = {
+    lightBlue: '#027AE3',
+    darkGreen: '#3D7B29',
+    darkGray: '#333'
+};
+
 export default {
     body: {
         margin: 0,
         padding: 0,
         background: '#fff',
         fontFamily: '"Century Gothic", Helvetica, Arial, sans-serif',
-        fontSize: '14px'
+        fontSize: '12px'
     },
 
     a: {
-        'text-decoration': 'none'
+        textDecoration: 'none',
+        color: colors.lightBlue
     },
 
     section: {
         marginBottom: '30px'
+    },
+
+    'h1, h2, h3, strong': {
+        textTransform: 'uppercase',
+        fontFamily: 'Helvetica Neue',
+        fontWeight: 'light',
+        color: colors.darkGreen
     }
 }
