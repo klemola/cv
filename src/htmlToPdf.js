@@ -15,8 +15,8 @@ const footerHtml = `
 `;
 
 const config = {
-    'phantomPath': '/usr/local/bin/phantomjs',
-    'footer': {
+    phantomPath: '/usr/local/bin/phantomjs',
+    footer: {
         'height': '10mm',
         'contents': footerHtml
     }

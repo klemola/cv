@@ -7,31 +7,42 @@ import Row from './Row';
 import {dateString} from '../utils/StringFormatter';
 import {textToParagraph} from '../utils/ElementUtil';
 
-const style = {};
+const imgStyle = {
+    width: '90%',
+    marginLeft: '10%',
+    borderRadius: '5px'
+};
 
 const General = ({data}) => (
     <section>
         <Row>
             <Column>
-                <Row><strong>{data.name}</strong></Row>
-                <Row>{data.occupation}</Row>
-                <Row><span>Tel. {data.phonenumber}</span></Row>
-                <Row><span>CV {dateString(data.date)}</span></Row>
-            </Column>
-            <Column>
                 <Row>
-                    <a href={'mailto:' + data.email}>{data.email}</a>
-                </Row>
-                {data.links.map((link) => {
-                    return (
+                    <Column>
+                        <Row><strong>{data.name}</strong></Row>
+                        <Row>{data.occupation}</Row>
+                        <Row><span>Tel. {data.phonenumber}</span></Row>
+                        <Row><span>CV {dateString(data.date)}</span></Row>
+                    </Column>
+                    <Column>
                         <Row>
-                            <a href={link.url}>{link.title}</a>
+                            <a href={'mailto:' + data.email}>{data.email}</a>
                         </Row>
-                    )
-                })}
+                        {data.links.map((link) => {
+                            return (
+                                <Row>
+                                    <a href={link.url}>{link.url}</a>
+                                </Row>
+                            )
+                        })}
+                    </Column>
+                </Row>
+                {textToParagraph(data.description)}
+            </Column>
+            <Column width={'20%'}>
+                <img style={imgStyle} src={'file://%dirname%' + data.pictureUrl} alt='Profile'/>
             </Column>
         </Row>
-        {textToParagraph(data.description)}
     </section>
 );
 
