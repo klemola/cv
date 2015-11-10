@@ -22,7 +22,7 @@ const General = ({data}) => (
                         <Row><strong>{data.name}</strong></Row>
                         <Row>{data.occupation}</Row>
                         <Row><span>Tel. {data.phonenumber}</span></Row>
-                        <Row><span>CV {dateString(data.date)}</span></Row>
+                        <Row><span>CV {dateString(new Date())}</span></Row>
                     </Column>
                     <Column>
                         <Row>

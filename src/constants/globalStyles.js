@@ -21,7 +21,7 @@ export default {
     },
 
     section: {
-        marginBottom: '30px'
+        marginBottom: '20px'
     },
 
     'h1, h2, h3, strong': {
