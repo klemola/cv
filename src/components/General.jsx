@@ -4,7 +4,6 @@ import React from 'react';
 import Radium from 'radium';
 import Column from './Column';
 import Row from './Row';
-import {dateString} from '../utils/StringFormatter';
 import {textToParagraph} from '../utils/ElementUtil';
 
 const imgStyle = {
@@ -22,7 +21,7 @@ const General = ({data}) => (
                         <Row><strong>{data.name}</strong></Row>
                         <Row>{data.occupation}</Row>
                         <Row><span>Tel. {data.phonenumber}</span></Row>
-                        <Row><span>CV {dateString(new Date())}</span></Row>
+                        <Row>{data.location}</Row>
                     </Column>
                     <Column>
                         <Row>

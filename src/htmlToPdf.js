@@ -2,11 +2,13 @@
 
 import pdf from 'html-pdf';
 import fs from 'fs';
+import {dateString} from './utils/StringFormatter';
 
+const date = dateString(new Date());
 const footerHtml = `
 <div style="padding: 0 20px; color: #999; font-family:\"Century Gothic\", Helvetica, Arial, sans-serif;">
     <span>
-        CV - Matias Klemola
+        CV ${date} - Matias Klemola
     <span>
     <span style="float:right; width:300px; text-align:right;">
         {{page}} / {{pages}}
