@@ -7,12 +7,12 @@ const style = {
     'marginTop': '15px'
 };
 
-const Publication = ({data}) => (
+const Publication = ({data, i18n}) => (
     <div style={style}>
         <strong>{data.name}</strong>
         <div>{data.type}, {data.releaseDate}</div>
         <div>{data.publisher}</div>
-        <div>Commissioned by: {data.commission}</div>
+        <div>{i18n.commission}: {data.commission}</div>
         <a href="{data.url}">{data.url}</a>
     </div>
 );

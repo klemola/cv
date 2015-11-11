@@ -24,25 +24,25 @@ const header = (
     </Row>
 );
 
-const Skills = ({data}) => {
-    const relevantSkills = data.items.filter((skill) => skill.relevance > 6);
+const Skills = ({data, i18n}) => {
+    const relevantSkills = data.filter((skill) => skill.relevance > 6);
     const typeGroups = R.values(groupByType(relevantSkills));
     const sides = cutInHalf(typeGroups);
 
     return (
         <section>
-            <h1>{data.title}</h1>
+            <h1>{i18n.title}</h1>
             <Row>
                 <Column>
                     <div key="leftColumn" style={style}>
                         {header}
-                        {sides[0].map((group) => <SkillGroup data={group}/>)}
+                        {sides[0].map((group) => <SkillGroup data={group} i18n={i18n}/>)}
                     </div>
                 </Column>
                 <Column>
                     <div key="rightColumn" style={style}>
                         {header}
-                        {sides[1].map((group) => <SkillGroup data={group}/>)}
+                        {sides[1].map((group) => <SkillGroup data={group} i18n={i18n}/>)}
                     </div>
                 </Column>
             </Row>

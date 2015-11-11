@@ -6,10 +6,10 @@ import Job from './Job';
 
 const style = {};
 
-const Work = ({data}) => (
+const Work = ({data, i18n}) => (
     <section style={style}>
-        <h1>{data.title}</h1>
-        {data.items.map((job) => <Job data={job}/>)}
+        <h1>{i18n.title}</h1>
+        {data.map((job) => <Job data={job} i18n={i18n}/>)}
     </section>
 );
 

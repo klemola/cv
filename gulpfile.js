@@ -10,8 +10,9 @@ const htmlAutoprefixer = require('html-autoprefixer');
 
 //npm link to data module and constant filenames are assumed
 const DATA_PATH = './node_modules/cvdata/';
-const CV_FILE_PATH = DATA_PATH + 'cv_english.yml';
+const CV_FILE_PATH = DATA_PATH + 'cv_EN.yml';
 const SKILLS_FILE_PATH = DATA_PATH + 'skills.yml';
+const I18N_FILE_PATH = DATA_PATH + 'i18n_EN.yml';
 
 const replaceFilePath = (html) => {
     return html.replace('%dirname%', (__dirname + '/output/'))
@@ -56,8 +57,8 @@ gulp.task('html', ['clean:html', 'images', 'scripts'], () => {
     let renderHtml = require('./dist/renderHtml');
     let stream = vinyl('cv.html');
 
-    let data = loadData(CV_FILE_PATH, SKILLS_FILE_PATH);
-    let html = renderHtml(data.cv, data.skills);
+    let data = loadData(CV_FILE_PATH, SKILLS_FILE_PATH, I18N_FILE_PATH);
+    let html = renderHtml(data.cv, data.skills, data.i18n);
     stream.end(htmlAutoprefixer.process(replaceFilePath(html)));
 
     return stream.pipe(gulp.dest('output'));

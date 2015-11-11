@@ -10,7 +10,7 @@ const style = {
     'marginTop': '15px'
 };
 
-const Degree = ({data}) => (
+const Degree = ({data, i18n}) => (
     <div style={style}>
         <Row>
             <Column width={'30%'}>
@@ -21,7 +21,7 @@ const Degree = ({data}) => (
                     <strong>{data.degree}</strong>
                 </Row>
                 <Row>{data.name}</Row>
-                {data.specialization && <Row><span>Specialization in {data.specialization}</span></Row>}
+                {data.specialization && <Row><span>{i18n.specialization} {data.specialization}</span></Row>}
             </Column>
         </Row>
     </div>

@@ -11,7 +11,7 @@ const style = {
     'marginTop': '15px'
 };
 
-const Job = ({data}) => (
+const Job = ({data, i18n}) => (
     <div style={style}>
         <Row>
             <Column width={'30%'}>
@@ -23,7 +23,7 @@ const Job = ({data}) => (
                 </Row>
                 <Row>{data.company}</Row>
                 {textToParagraph(data.description)}
-                {data.tech && <Row><span>Key technologies: {data.tech}</span></Row>}
+                {data.tech && <Row><span>{i18n.keyTech}: {data.tech}</span></Row>}
             </Column>
         </Row>
     </div>

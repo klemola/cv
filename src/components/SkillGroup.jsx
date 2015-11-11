@@ -16,13 +16,13 @@ const sortSkills = (skills) => {
     return sort(skills, ['skill', 'experience', 'relevance'], {reverse: true});
 };
 
-const SkillGroup = ({data}) => {
+const SkillGroup = ({data, i18n}) => {
     const sortedSkills = sortSkills(data);
     return (
         <div style={groupStyle}>
             <Row>
                 <Column>
-                    <strong>{capitalize(sortedSkills[0].type)}</strong>
+                    <strong>{i18n.types[sortedSkills[0].type]}</strong>
                 </Column>
             </Row>
             {sortedSkills.map((skill) => {

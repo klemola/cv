@@ -6,10 +6,10 @@ import Degree from './Degree';
 
 const style = {};
 
-const Education = ({data}) => (
+const Education = ({data, i18n}) => (
     <section style={style}>
-        <h1>{data.title}</h1>
-        {data.items.map((degree) => <Degree data={degree}/>)}
+        <h1>{i18n.title}</h1>
+        {data.map((degree) => <Degree data={degree} i18n={i18n}/>)}
     </section>
 );
 

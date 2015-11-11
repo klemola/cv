@@ -6,10 +6,10 @@ import Publication from './Publication';
 
 const style = {};
 
-const Publications = ({data}) => (
+const Publications = ({data, i18n}) => (
     <section style={style}>
-        <h1>{data.title}</h1>
-        {data.items.map((publication) => <Publication data={publication}/>)}
+        <h1>{i18n.title}</h1>
+        {data.map((publication) => <Publication data={publication} i18n={i18n}/>)}
     </section>
 );
 

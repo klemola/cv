@@ -19,23 +19,22 @@ const style = {
 };
 
 const Root = (props) => {
-    const {general, work, education, projects, publications} = props.cv;
     return (
         <div style={style}>
             <Style rules={globalStyles}/>
             <Page>
-                <General data={general}/>
-                <Work data={work}/>
+                <General data={props.cv.general} i18n={props.i18n.general}/>
+                <Work data={props.cv.work} i18n={props.i18n.work}/>
             </Page>
             <Page>
-                <Skills data={props.skills}/>
+                <Skills data={props.skills} i18n={props.i18n.skills}/>
             </Page>
             <Page>
-                <Education data={education}/>
-                <Projects data={projects}/>
+                <Education data={props.cv.education} i18n={props.i18n.education}/>
+                <Projects data={props.cv.projects} i18n={props.i18n.projects}/>
             </Page>
             <Page noPageBreak={true}>
-                <Publications data={publications}/>
+                <Publications data={props.cv.publications} i18n={props.i18n.publications}/>
             </Page>
         </div>
     )

@@ -12,7 +12,7 @@ const imgStyle = {
     borderRadius: '5px'
 };
 
-const General = ({data}) => (
+const General = ({data, i18n}) => (
     <section>
         <Row>
             <Column>
@@ -20,7 +20,7 @@ const General = ({data}) => (
                     <Column>
                         <Row><strong>{data.name}</strong></Row>
                         <Row>{data.occupation}</Row>
-                        <Row><span>Tel. {data.phonenumber}</span></Row>
+                        <Row><span>{i18n.telephoneNumber} {data.phonenumber}</span></Row>
                         <Row>{data.location}</Row>
                     </Column>
                     <Column>
