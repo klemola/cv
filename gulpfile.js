@@ -4,18 +4,23 @@ const gulp = require('gulp');
 const babel = require('gulp-babel');
 const clean = require('gulp-clean');
 const vinyl = require('vinyl-source-stream');
+const mergeStream = require('merge-stream');
 const browserSync = require('browser-sync');
 const reload = browserSync.reload;
 const htmlAutoprefixer = require('html-autoprefixer');
+const yaml = require('js-yaml');
+const fs = require('fs');
 
-//npm link to data module and constant filenames are assumed
-const DATA_PATH = './node_modules/cvdata/';
-const CV_FILE_PATH = DATA_PATH + 'cv_EN.yml';
-const SKILLS_FILE_PATH = DATA_PATH + 'skills.yml';
-const I18N_FILE_PATH = DATA_PATH + 'i18n_EN.yml';
+const config = yaml.safeLoad(fs.readFileSync('./config.yml', 'utf-8'));
 
-const replaceFilePath = (html) => {
-    return html.replace('%dirname%', (__dirname + '/output/'))
+const replaceFilePath = (html) => html.replace('%dirname%', (__dirname + '/output/'));
+const localizedHtmlFileName = (language, extension) => 'cv_' + language + '.' + extension;
+const transformPaths = (files) => {
+    let transformed = {};
+    Object.keys(files).forEach((key) => {
+        transformed[key] = [config.dataPath, files[key]].join('/')
+    });
+    return transformed;
 };
 
 gulp.task('scripts', ['clean:scripts'], () => {
@@ -53,20 +58,31 @@ gulp.task('clean:cache', () => {
 });
 
 gulp.task('html', ['clean:html', 'images', 'scripts'], () => {
-    let loadData = require('./dist/loadData');
-    let renderHtml = require('./dist/renderHtml');
-    let stream = vinyl('cv.html');
+    const loadData = require('./dist/loadData');
+    const renderHtml = require('./dist/renderHtml');
 
-    let data = loadData(CV_FILE_PATH, SKILLS_FILE_PATH, I18N_FILE_PATH);
-    let html = renderHtml(data.cv, data.skills, data.i18n);
-    stream.end(htmlAutoprefixer.process(replaceFilePath(html)));
+    let sources = config.sources.map((source) => {
+        let stream = vinyl(localizedHtmlFileName(source.language, 'html'));
+        let files = transformPaths(source.files);
+        console.log(files)
+        let data = loadData(files.cvFilePath, files.skillsFilePath, files.i18nFilePath);
+        let html = renderHtml(data.cv, data.skills, data.i18n);
 
-    return stream.pipe(gulp.dest('output'));
+        stream.end(htmlAutoprefixer.process(replaceFilePath(html)));
+        return stream.pipe(gulp.dest('output'));
+    });
+
+    return mergeStream.apply(null, sources);
 });
 
 gulp.task('pdf', ['html'], () => {
     let htmlToPdf = require('./dist/htmlToPdf');
-    htmlToPdf('./output/cv.html', './output/cv.pdf');
+    config.sources.forEach((source) => {
+        htmlToPdf(
+            './output/' + localizedHtmlFileName(source.language, 'html'),
+            './output/' + localizedHtmlFileName(source.language, 'pdf')
+        );
+    })
 });
 
 gulp.task('serve', ['html'], () => {
