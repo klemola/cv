@@ -64,7 +64,6 @@ gulp.task('html', ['clean:html', 'images', 'scripts'], () => {
     let sources = config.sources.map((source) => {
         let stream = vinyl(localizedHtmlFileName(source.language, 'html'));
         let files = transformPaths(source.files);
-        console.log(files)
         let data = loadData(files.cvFilePath, files.skillsFilePath, files.i18nFilePath);
         let html = renderHtml(data.cv, data.skills, data.i18n);
 

@@ -16,18 +16,30 @@ const style = {
     marginRight: '40px'
 };
 
-const header = (
-    <Row>
-        <Column width={'45%'}></Column>
-        <Column textAlign={'right'}>Skill (1-5)</Column>
-        <Column textAlign={'right'}>Exp (Years)</Column>
-    </Row>
-);
+const headerTextStyle = {
+    fontSize:'10px'
+};
 
 const Skills = ({data, i18n}) => {
     const relevantSkills = data.filter((skill) => skill.relevance > 6);
     const typeGroups = R.values(groupByType(relevantSkills));
     const sides = cutInHalf(typeGroups);
+
+    const header = (
+        <Row>
+            <Column width={'45%'}></Column>
+            <Column textAlign={'right'}>
+                <span key="legend1" style={headerTextStyle}>
+                    <span>{i18n.skill}</span> (1-5)
+                </span>
+            </Column>
+            <Column textAlign={'right'}>
+                <span key="legend2" style={headerTextStyle}>
+                    {i18n.experience}
+                </span>
+            </Column>
+        </Row>
+    );
 
     return (
         <section>
