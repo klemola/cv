@@ -1,11 +1,9 @@
-'use strict';
-
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import Root from './components/Root';
+import Root from './components/Root'; //eslint-disable-line
 
-const Template = (content) => {
-    return `
+const Template = (content) =>
+  `
      <!doctype html>
      <html lang="en">
         <head>
@@ -18,14 +16,13 @@ const Template = (content) => {
             ${content}
         </body>
     </html>
-    `;
-};
+  `;
 
 export default (cv, skills, i18n) => {
-    const html = ReactDOMServer.renderToString(React.createElement(Root, {
-        cv: cv,
-        skills: skills,
-        i18n: i18n,
-    }));
-    return Template(html);
+  const html = ReactDOMServer.renderToString(React.createElement(Root, {
+    cv: cv,
+    skills: skills,
+    i18n: i18n,
+  }));
+  return Template(html);
 };
