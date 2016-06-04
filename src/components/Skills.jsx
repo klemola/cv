@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import Radium from 'radium';
+import Radium from '../utils/ConfiguredRadium';
 import R from 'Ramda';
 import Column from './Column';
 import Row from './Row';
@@ -17,7 +17,7 @@ const style = {
 };
 
 const headerTextStyle = {
-    fontSize:'10px'
+    fontSize: '10px'
 };
 
 const Skills = ({data, i18n}) => {
@@ -30,7 +30,8 @@ const Skills = ({data, i18n}) => {
             <Column width={'45%'}></Column>
             <Column textAlign={'right'}>
                 <span key="legend1" style={headerTextStyle}>
-                    <span>{i18n.skill}</span> (1-5)
+                    <span>{i18n.skill}</span>
+                    (1-5)
                 </span>
             </Column>
             <Column textAlign={'right'}>

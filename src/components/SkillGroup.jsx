@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import Radium from 'radium';
+import Radium from '../utils/ConfiguredRadium';
 import sort from 'array-sort';
 import Column from './Column';
 import Row from './Row';
@@ -13,7 +13,9 @@ const groupStyle = {
 };
 
 const sortSkills = (skills) => {
-    return sort(skills, ['skill', 'experience', 'relevance'], {reverse: true});
+    return sort(skills, [
+        'skill', 'experience', 'relevance'
+    ], {reverse: true});
 };
 
 const SkillGroup = ({data, i18n}) => {

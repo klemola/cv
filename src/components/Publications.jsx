@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import Radium from 'radium';
+import Radium from '../utils/ConfiguredRadium';
 import Publication from './Publication';
 
 const style = {};

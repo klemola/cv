@@ -22,10 +22,10 @@ const Template = (content) => {
 };
 
 export default (cv, skills, i18n) => {
-    let html = ReactDOMServer.renderToString(React.createElement(Root, {
+    const html = ReactDOMServer.renderToString(React.createElement(Root, {
         cv: cv,
         skills: skills,
-        i18n: i18n
+        i18n: i18n,
     }));
     return Template(html);
 };

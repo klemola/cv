@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import Radium from 'radium';
+import Radium from '../utils/ConfiguredRadium';
 import Column from './Column';
 import Row from './Row';
 import {textToParagraph} from '../utils/ElementUtil';
@@ -18,9 +18,13 @@ const General = ({data, i18n}) => (
             <Column>
                 <Row>
                     <Column>
-                        <Row><strong>{data.name}</strong></Row>
+                        <Row>
+                            <strong>{data.name}</strong>
+                        </Row>
                         <Row>{data.occupation}</Row>
-                        <Row><span>{i18n.telephoneNumber} {data.phonenumber}</span></Row>
+                        <Row>
+                            <span>{i18n.telephoneNumber} {data.phonenumber}</span>
+                        </Row>
                         <Row>{data.location}</Row>
                     </Column>
                     <Column>
@@ -44,6 +48,5 @@ const General = ({data, i18n}) => (
         </Row>
     </section>
 );
-
 
 export default Radium(General);

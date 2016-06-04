@@ -1,11 +1,15 @@
 'use strict';
 
 import React from 'react';
-import Radium from 'radium';
+import Radium from '../utils/ConfiguredRadium';
+
+console.log(Radium)
 
 const Page = ({children, noPageBreak}) => {
     const style = {
-        pageBreakAfter: noPageBreak ? 'none' : 'always'
+        pageBreakAfter: noPageBreak
+            ? 'none'
+            : 'always'
     };
     return <div style={style}>{children}</div>
 };

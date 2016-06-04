@@ -1,7 +1,7 @@
 'use strict';
 
 import React from 'react';
-import Radium from 'radium';
+import Radium from '../utils/ConfiguredRadium';
 import Column from './Column'
 import Row from './Row'
 import {textToParagraph} from '../utils/ElementUtil'
@@ -17,7 +17,8 @@ const Project = ({data}) => (
             <strong>{data.name}</strong>
         </Row>
         <Row>
-            <span>{data.client} ({yearRange(data.start, data.end)})</span>
+            <span>{data.client}
+                ({yearRange(data.start, data.end)})</span>
         </Row>
         {textToParagraph(data.description)}
     </div>

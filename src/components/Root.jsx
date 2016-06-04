@@ -1,15 +1,16 @@
 'use strict';
 
-import React from 'react'
-import Radium, { Style } from 'radium'
-import globalStyles from '../constants/globalStyles'
-import Page from './Page'
-import General from './General'
-import Work from './Work'
-import Education from './Education'
-import Projects from './Projects'
-import Publications from './Publications'
-import Skills from './Skills'
+import React from 'react';
+import Radium from '../utils/ConfiguredRadium';
+import {Style} from 'radium';
+import globalStyles from '../constants/globalStyles';
+import Page from './Page';
+import General from './General';
+import Work from './Work';
+import Education from './Education';
+import Projects from './Projects';
+import Publications from './Publications';
+import Skills from './Skills';
 
 const style = {
     maxWidth: '700px',
