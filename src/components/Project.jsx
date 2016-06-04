@@ -14,8 +14,10 @@ const Project = ({ data }) => (
       <strong>{data.name}</strong>
     </Row>
     <Row>
-      <span>{data.client}
-        ({yearRange(data.start, data.end)})</span>
+      <span>
+        {`${data.client} `}
+      </span>
+      <span>({yearRange(data.start, data.end)})</span>
     </Row>
     {textToParagraph(data.description)}
   </div>

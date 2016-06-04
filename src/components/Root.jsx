@@ -27,11 +27,9 @@ const Root = (props) => (
     <Page>
       <Skills data={props.skills} i18n={props.i18n.skills} />
     </Page>
-    <Page>
+    <Page noPageBreak>
       <Education data={props.cv.education} i18n={props.i18n.education} />
       <Projects data={props.cv.projects} i18n={props.i18n.projects} />
-    </Page>
-    <Page noPageBreak>
       <Publications data={props.cv.publications} i18n={props.i18n.publications} />
     </Page>
   </div>

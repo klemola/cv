@@ -25,7 +25,7 @@ const SkillGroup = ({ data, i18n }) => {
         <Row>
           <Column width={'45%'}>{skill.name}</Column>
           <Column textAlign={'right'}>{skill.skill}</Column>
-          <Column textAlign={'right'}>{skill.experience}</Column>
+          <Column textAlign={'right'}>{Math.ceil(skill.experience)}</Column>
         </Row>
       ))}
     </div>
