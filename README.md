@@ -2,9 +2,9 @@
 
 ## About
 
-YML files -> HTML + PDF CV using React and Node.js
+YML files to HTML and PDF CV using React and Node.js
 
-Requires a custom config.yml file (or symbolic link) in the root folder
+Requires a custom `config.yml` file (or symbolic link) in the root folder
 
 Example `config.yml`
 
@@ -27,8 +27,7 @@ sources:
 
 ## Usage
 
-- YML to HTML: `gulp`
-- YML to PDF: `gulp pdf`
+- YML to HTML and PDF: `gulp` or `gulp build`
 - Dev server with live reload: `gulp serve`
 
 License: MIT

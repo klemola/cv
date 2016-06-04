@@ -60,7 +60,7 @@ gulp.task('clean:cache', () => {
     });
 });
 
-gulp.task('html', ['clean:output', 'images', 'scripts'], () => {
+gulp.task('html', ['images', 'scripts'], () => {
     const loadData = require('./dist/loadData');
     const renderHtml = require('./dist/renderHtml');
 
@@ -77,7 +77,7 @@ gulp.task('html', ['clean:output', 'images', 'scripts'], () => {
     return mergeStream.apply(null, sources);
 });
 
-gulp.task('pdf', ['html'], () => {
+gulp.task('build', ['clean:output', 'html'], () => {
     let htmlToPdf = require('./dist/htmlToPdf');
     config.sources.forEach((source) => {
         htmlToPdf(
@@ -91,14 +91,15 @@ gulp.task('serve', ['html'], () => {
     browserSync({
         notify: false,
         open: false,
-        port: 5000,
+        port: 9000,
         ghostMode: false,
         server: {
-            baseDir: ['output']
+            baseDir: ['output'],
+            directory: true,
         }
     });
     gulp.watch(['src/**/*.js', 'src/**/*.jsx'], ['clean:cache', 'html']);
-    gulp.watch(['output/cv.html'], reload);
+    gulp.watch(['output/*.html'], reload);
 });
 
-gulp.task('default', ['html']);
+gulp.task('default', ['build']);
