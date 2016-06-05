@@ -1,4 +1,4 @@
-'use strict';
+/* eslint-disable global-require */
 
 const gulp = require('gulp');
 const babel = require('gulp-babel');
@@ -14,92 +14,101 @@ const moment = require('moment');
 
 const config = yaml.safeLoad(fs.readFileSync('./config.yml', 'utf-8'));
 
-const replaceFilePath = (html) => html.replace('%dirname%', (__dirname + '/output/'));
-const nameString = () => config.name.split(' ').map(x => x.toLowerCase()).join('_');
-const dateString = () => moment().format('DD_MM_YYYY');
-const fileName = (language, extension) => [nameString(), 'cv', language, dateString()].join('_') + '.' + extension;
-const transformPaths = (files) => {
-    let transformed = {};
-    Object.keys(files).forEach((key) => {
-        transformed[key] = [config.dataPath, files[key]].join('/')
-    });
-    return transformed;
-};
+function replaceFilePath(html) {
+  return html.replace('%dirname%', `${__dirname}/output/`);
+}
 
-gulp.task('scripts', ['clean:scripts'], () => {
-    return gulp.src(['src/**/*.js', 'src/**/*.jsx'])
-        .pipe(babel())
-        .pipe(gulp.dest('dist'));
-});
+function toFileName(language, extension) {
+  const normalizedName = config.name.split(' ').map(x => x.toLowerCase()).join('_');
+  const now = moment().format('DD_MM_YYYY');
+  const fileName = [normalizedName, 'cv', language, now].join('_');
 
-gulp.task('images', ['clean:images'], () => {
-   return gulp.src('src/images/*')
-        .pipe(gulp.dest('output'));
-});
+  return `${fileName}.${extension}`;
+}
 
-gulp.task('clean:scripts', () => {
-    return gulp.src('dist', {read: false})
-        .pipe(clean({force: true}));
-});
+function transformPaths(files) {
+  const transformed = {};
+  Object.keys(files).forEach((key) => {
+    transformed[key] = [config.dataPath, files[key]].join('/');
+  });
 
-gulp.task('clean:images', () => {
-    return gulp.src(['output/*.jpg', 'output/*.jpeg', 'output/*.png'], {read: false})
-        .pipe(clean({force: true}));
-});
+  return transformed;
+}
 
-gulp.task('clean:output', () => {
-    return gulp.src(['output/*.html', 'output/*.pdf'], {read: false})
-        .pipe(clean({force: true}));
-});
+gulp.task('scripts', ['clean:scripts'], () =>
+  gulp.src(['src/**/*.js', 'src/**/*.jsx'])
+    .pipe(babel())
+    .pipe(gulp.dest('dist'))
+);
 
-gulp.task('clean:cache', () => {
-    return Object.keys(require.cache).forEach(function(key) {
-        if (key.indexOf('cv/dist') !== -1) {
-            delete require.cache[key]
-        }
-    });
-});
+gulp.task('images', ['clean:images'], () =>
+  gulp.src('src/images/*')
+    .pipe(gulp.dest('output'))
+);
+
+gulp.task('clean:scripts', () =>
+  gulp.src('dist', { read: false })
+    .pipe(clean({ force: true }))
+);
+
+gulp.task('clean:images', () =>
+  gulp.src(['output/*.jpg', 'output/*.jpeg', 'output/*.png'], { read: false })
+    .pipe(clean({ force: true }))
+);
+
+gulp.task('clean:output', () =>
+  gulp.src(['output/*.html', 'output/*.pdf'], { read: false })
+    .pipe(clean({ force: true }))
+);
+
+gulp.task('clean:cache', () =>
+  Object.keys(require.cache).forEach((key) => {
+    if (key.indexOf('cv/dist') !== -1) {
+      delete require.cache[key];
+    }
+  })
+);
 
 gulp.task('html', ['images', 'scripts'], () => {
-    const loadData = require('./dist/loadData');
-    const renderHtml = require('./dist/renderHtml');
+  const loadData = require('./dist/loadData');
+  const renderHtml = require('./dist/renderHtml');
 
-    let sources = config.sources.map((source) => {
-        let stream = vinyl(fileName(source.language, 'html'));
-        let files = transformPaths(source.files);
-        let data = loadData(files.cvFilePath, files.skillsFilePath, files.i18nFilePath);
-        let html = renderHtml(data.cv, data.skills, data.i18n);
+  const sources = config.sources.map((source) => {
+    const stream = vinyl(toFileName(source.language, 'html'));
+    const files = transformPaths(source.files);
+    const data = loadData(files.cvFilePath, files.skillsFilePath, files.i18nFilePath);
+    const html = renderHtml(data.cv, data.skills, data.i18n);
 
-        stream.end(htmlAutoprefixer.process(replaceFilePath(html)));
-        return stream.pipe(gulp.dest('output'));
-    });
+    stream.end(htmlAutoprefixer.process(replaceFilePath(html)));
+    return stream.pipe(gulp.dest('output'));
+  });
 
-    return mergeStream.apply(null, sources);
+  return mergeStream.apply(null, sources);
 });
 
 gulp.task('build', ['clean:output', 'html'], () => {
-    let htmlToPdf = require('./dist/htmlToPdf');
-    config.sources.forEach((source) => {
-        htmlToPdf(
-            './output/' + fileName(source.language, 'html'),
-            './output/' + fileName(source.language, 'pdf')
-        );
-    })
+  const htmlToPdf = require('./dist/htmlToPdf');
+  config.sources.forEach((source) => {
+    htmlToPdf(
+        `./output/${toFileName(source.language, 'html')}`,
+        `./output/${toFileName(source.language, 'pdf')}`
+    );
+  });
 });
 
 gulp.task('serve', ['html'], () => {
-    browserSync({
-        notify: false,
-        open: false,
-        port: 9000,
-        ghostMode: false,
-        server: {
-            baseDir: ['output'],
-            directory: true,
-        }
-    });
-    gulp.watch(['src/**/*.js', 'src/**/*.jsx'], ['clean:cache', 'html']);
-    gulp.watch(['output/*.html'], reload);
+  browserSync({
+    notify: false,
+    open: false,
+    port: 9000,
+    ghostMode: false,
+    server: {
+      baseDir: ['output'],
+      directory: true,
+    },
+  });
+  gulp.watch(['src/**/*.js', 'src/**/*.jsx'], ['clean:cache', 'html']);
+  gulp.watch(['output/*.html'], reload);
 });
 
 gulp.task('default', ['build']);
