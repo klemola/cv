@@ -9,11 +9,11 @@ const groupByType = R.groupBy((skill) => skill.type);
 const cutInHalf = (collection) => R.splitEvery(Math.ceil(collection.length / 2))(collection);
 
 const style = {
-  marginRight: '40px',
+  padding: '0 2rem 0 0',
 };
 
 const headerTextStyle = {
-  fontSize: '10px',
+  fontSize: '8px',
 };
 
 const Skills = ({ data, i18n }) => {
@@ -23,7 +23,7 @@ const Skills = ({ data, i18n }) => {
 
   const header = (
     <Row>
-      <Column width={'45%'} />
+      <Column width={'60%'} />
       <Column textAlign={'right'}>
         <span key="legend1" style={headerTextStyle}>
           <span>{i18n.skill}</span>

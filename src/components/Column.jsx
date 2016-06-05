@@ -3,9 +3,9 @@ import Radium from '../utils/ConfiguredRadium';
 
 const Column = ({ children, width, textAlign }) => {
   let style = {
-    flex: !width
-      ? 1
-      : 'none',
+    flex: width
+      ? 'none'
+      : 1,
     width: width,
     textAlign: textAlign || 'left',
   };

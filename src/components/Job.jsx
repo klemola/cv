@@ -16,7 +16,7 @@ const Job = ({ data, i18n }) => (
         {monthOfYearString(data.start)}
         - {monthOfYearString(data.end)}
       </Column>
-      <Column>
+      <Column width={'70%'}>
         <Row>
           <strong>{data.position}</strong>
         </Row>

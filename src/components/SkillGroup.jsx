@@ -23,7 +23,7 @@ const SkillGroup = ({ data, i18n }) => {
       </Row>
       {sortedSkills.map((skill) => (
         <Row>
-          <Column width={'45%'}>{skill.name}</Column>
+          <Column width={'60%'}>{skill.name}</Column>
           <Column textAlign={'right'}>{skill.skill}</Column>
           <Column textAlign={'right'}>{Math.ceil(skill.experience)}</Column>
         </Row>

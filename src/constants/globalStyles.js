@@ -5,6 +5,14 @@ const colors = {
 };
 
 export default {
+  html: {
+    boxSizing: 'border-box',
+  },
+
+  '*': {
+    boxSizing: 'inherit',
+  },
+
   body: {
     margin: 0,
     padding: 0,
@@ -19,7 +27,7 @@ export default {
   },
 
   section: {
-    marginBottom: '20px',
+    paddingBottom: '10px',
   },
 
   'h1, h2, h3, strong': {
